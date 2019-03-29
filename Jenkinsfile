@@ -43,9 +43,14 @@ pipeline {
                 branch 'master'
             }
             steps {
-                input 'Deploy to Production?'
+                input 'Continous Delivery Not Ready Yet : Deploy to Production?'
                 milestone(1)
                 //implement Kubernetes deployment here
+                kubernetesDeploy(
+                  kubeconfigId: 'kubeconfig',
+                  configs: 'train-schedule-kube-da.yaml',
+                  enableConfigSubstitution: true
+                )
             }
         }
     }
